@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>DBR</title>
+</head>
+<style>
+  .wrapper {
+    width: 500px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    min-height: 400px;
+  }
+</style>
+
+<body>
+  <div class="wrapper">
+    <canvas id="chart" width="500" height="400"></canvas>
+  </div>
+</body>
+<script>
+  $(document).ready(function () {
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+      // The Canvas element in which the chart is drawn.
+      var ctx = document.getElementById("chart").getContext('2d');
+
+      // Data used to render the chart.
+      var data = {
+        datasets: [{
+          data: [5, 3, 1],  // DATA values.
+          backgroundColor: [ // Corresponding colors for each value.
+            "green",
+            "yellow",
+            "red"
+          ],
+          borderColor: [ // Border color for each section of the chart.
+            "#005500",
+            "#550000",
+            "#555500"
+          ],
+          borderWidth: 1, // Border width.
+        }],
+        labels: [   // Text used on hover
+          'Green, OK',
+          'Yellow, No!',
+          'Red, ABORT!!'
+        ]
+      };
+
+      // Chart configuration.
+      var chartOptions = {
+        cutoutPercentage: 80, // Percentage of hole cut out of chart.
+        rotation: Math.PI,    // This + circumference make this a half-chart.
+        circumference: Math.PI,
+        legend: {
+          display: false, // Hide the .egend.
+        }
+      };
+
+      // Create a chart intance using the data + the chart options.
+      var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data,
+        options: chartOptions
+      });
+    });
+  })
+
+</script>
+
+</html>
